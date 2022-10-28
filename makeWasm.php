@@ -15,6 +15,7 @@ if (isset($_GET['proj']) && isset($_POST['compiler']) && isset($_POST['compilero
 							chdir($folder['folder']);
 							$out;
 							$code;
+					                if($doSetPath){putenv("PATH=".$path_var);}
 							exec($empp." ".$_POST['compilefile']." ".$_POST['compileropts']." ".' -o '.$_POST['outFile'],$out,$code);
 							if ($code==0) {
 								$success.='Swal.fire("Successfuly compiled file.")';

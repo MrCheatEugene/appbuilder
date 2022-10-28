@@ -1,8 +1,10 @@
 <?php
-	$slash = "\\";
-	$cordova_path = 'cmd /c cordova';
-	$projects_path = 'C:\Program Files\VertrigoServ\www\editor\cordova-projects';
-	$tmp_path = 'C:\Program Files\VertrigoServ\www\editor\tmp';
+	$slash = "/";
+	$doSetPath = true;
+	$cordova_path = 'cordova';
+	$projects_path = '/cordova-projects';
+	$tmp_path = '/tmp';
+	$path_var ="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin";
 	$empp = "em++";
 	$emcc = "emcc";
 ?>

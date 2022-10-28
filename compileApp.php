@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 //header("Content-Type: application/json");
   if (isset($_GET['proj'])) {
   	$project = strval($_GET['proj']);
@@ -9,6 +9,7 @@
   include 'config.php';
   chdir($projects_path);
   chdir($project);
+if(file_exists($assets.".assetsfolder") == true && file_get_contents($assets.".assetsfolder") == '1'){
   function deleteDirectory($dir) {
     if (!file_exists($dir)) {
         return true;
@@ -82,12 +83,13 @@ function recurseCopy(
 
     closedir($directory);
 }
-chdir($projects_path."\\".$project);
+chdir($projects_path.$slash.$project);
 recurseCopy($assets,'./www');
 $out = "";
 $succ = false;
 $file = "unknown";
 $waitForAPK = false;
+                if($doSetPath){putenv("PATH=".$path_var);}
 exec($cordova_path." build -- --jvmargs='-Xmx1G'",$out);
 foreach ($out as $key => $value) {
     if((strpos($value,"BUILD SUCCESSFUL")=== false)== false){
@@ -106,4 +108,7 @@ if ($succ == false) {
     $file = false;
 }
 echo json_encode(array("file"=>$file,"success"=>$succ));
+}else{
+echo '{"success":0}';
+}
 ?>

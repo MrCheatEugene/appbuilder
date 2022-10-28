@@ -18,8 +18,12 @@
 	if (isset($_SESSION['$projects$']) == false) {
 		$_SESSION['$projects$'] = array();
 	}
+//var_dump($_SESSION);
 	if (isset($_POST['fileContents']) and isset($_POST['filename'])) {
 		$_POST['filename'] = strval($_POST['filename']);
+		if(isset($_SESSION[$project]['files']) == false){
+			$_SESSION[$project]['files'] = array();
+		}
 		if(in_array($_POST['filename'], $_SESSION[$project]['files']) and isset($_SESSION[$project]['files'])){
 			$_SESSION[$project]['files'][$_POST['filename']]= array('filename'=> $_POST['filename'], 'fileContents' => $_POST['fileContents'],'isasset'=>$isasset);
 			echo json_encode(array("success"=>1));

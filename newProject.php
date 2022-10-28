@@ -12,16 +12,12 @@ session_start();
 		chdir($projects_path);
 		$out;
 		$code = 0;
-		exec($cordova_path." create ".$project." com.appbuilder.".$project." ".$project,$out,$code);
+		if($doSetPath){putenv("PATH=".$path_var);}
+		exec($cordova_path." create ".$project." com.appbuilder.".$project." ".$project." -d --verbose && cd ".$project." && ".$cordova_path." platform add android 2>&1",$out,$code);
 		if ($code == 0) {
-			chdir($project);
-			exec($cordova_path." platform add android",$out,$code);
-			if ($code == 0) {
-				array_push($_SESSION['$projects$'],$project);
-				echo '{"success":true}';
-			}else{
-				echo '{"success":false}';	
-			}
+			array_push($_SESSION['$projects$'],$project);
+			echo '{"success":true}';
+
 		}else{
 			echo '{"success":false}';
 		}
